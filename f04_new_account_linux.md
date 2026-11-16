@@ -98,21 +98,31 @@ On the **new account**:
    ```text
    set tabsize 4
    set tabstospaces true
+   set tabmovement true
    set autoindent true
    set smartpaste false
    set clipboard external
    set syntax true
    set matchbrace true
+   set hltrailingws true
+   set colorcolumn 80
+   set hlsearch true
    bind Alt-s SaveAs
    ```
 
    - `tabsize 4` – four spaces per indentation level.
-   - `tabstospaces true` – use spaces instead of tabs.
+   - `tabstospaces true` – insert spaces instead of tab characters.
+   - `tabmovement true` – move the cursor across indentation in groups of four spaces.
    - `autoindent true` – preserve indentation while typing.
-   - `smartpaste false` – do not add indentation to pasted text.
-   - `clipboard external` – use the desktop clipboard (`xclip` on X11, `wl-clipboard` on Wayland).
-   - `syntax true` / `matchbrace true` – highlight syntax and matching brackets.
+   - `smartpaste false` – do not add extra indentation when pasting.
+   - `clipboard external` – use the Windows clipboard.
+   - `syntax true` – highlight code syntax.
+   - `matchbrace true` – highlight matching brackets.
+   - `hltrailingws true` – highlight trailing whitespace at the end of lines.
+   - `colorcolumn 80` – display a vertical guide at column 80.
+   - `hlsearch true` – highlight all search matches.
    - `bind Alt-s SaveAs` – assign **Alt+S** to Save As (**Ctrl+S** remains Save).
+   ```text
 
 3. Close the editor with **Ctrl+Q**; settings are saved.
 4. Set micro as the default editor **permanently** for this user:
