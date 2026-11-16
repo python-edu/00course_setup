@@ -85,15 +85,30 @@ On the **main administrator account**:
 
 ---
 
+
 # Account settings
 
-On the **new account**:
+## Set English as the account display language
 
-1. Open **File Explorer**.
-2. Select **View → File name extensions**.
-3. Enable **File name extensions**.
+  - Open Start → Settings (Win + I).
+  - Select Time & language → Language & region.
+  - Under Preferred languages, click Add a language.
+  - Search for English (United States) and select Next.
+  - Select Language pack and Set as my Windows display language. Other optional features are not required.
+  - Click Install.
+  - After installation, select Sign out when prompted.
+  - Sign in again to the same account.
+
+
+
+## Show file name extensions
+
+  - Open **File Explorer**.
+  - Select **View → Show → File name extensions**.
+  - Enable **File name extensions**.
 
 ---
+
 
 # WinGet
 
