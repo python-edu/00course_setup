@@ -103,6 +103,7 @@ On the **new account**:
    set clipboard external
    set syntax true
    set matchbrace true
+   bind Alt-s SaveAs
    ```
 
    - `tabsize 4` – four spaces per indentation level.
@@ -111,6 +112,7 @@ On the **new account**:
    - `smartpaste false` – do not add indentation to pasted text.
    - `clipboard external` – use the desktop clipboard (`xclip` on X11, `wl-clipboard` on Wayland).
    - `syntax true` / `matchbrace true` – highlight syntax and matching brackets.
+   - `bind Alt-s SaveAs` – assign **Alt+S** to Save As (**Ctrl+S** remains Save).
 
 3. Close the editor with **Ctrl+Q**; settings are saved.
 4. Set micro as the default editor **permanently** for this user:

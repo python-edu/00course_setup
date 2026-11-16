@@ -117,6 +117,7 @@ On the **new account**, in Terminal:
    set clipboard external
    set syntax true
    set matchbrace true
+   bind Alt-s SaveAs
    ```
 
    - `tabsize 4` – four spaces per indentation level.
@@ -125,6 +126,7 @@ On the **new account**, in Terminal:
    - `smartpaste false` – do not add indentation to pasted text.
    - `clipboard external` – use the macOS clipboard.
    - `syntax true` / `matchbrace true` – highlight syntax and matching brackets.
+   - `bind Alt-s SaveAs` – assign **Alt+S** to Save As (**Ctrl+S** remains Save).
 
 3. Press **Ctrl+Q** to exit; settings are saved.
 4. Set micro as the default editor **permanently** for this user:

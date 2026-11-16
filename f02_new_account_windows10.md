@@ -250,6 +250,7 @@ On the **new account**, in PowerShell 7:
    set clipboard external
    set syntax true
    set matchbrace true
+   bind Alt-s SaveAs
    ```
 
    - `tabsize 4` – four spaces per indentation level.
@@ -259,6 +260,7 @@ On the **new account**, in PowerShell 7:
    - `clipboard external` – use the Windows clipboard.
    - `syntax true` – highlight code syntax.
    - `matchbrace true` – highlight matching brackets.
+   - `bind Alt-s SaveAs` – assign **Alt+S** to Save As (**Ctrl+S** remains Save).
 
 4. Press **Ctrl+Q** to close micro. The settings are saved for this account.
 5. **If you use Windows Terminal**, configure it to let micro handle **Ctrl+V** itself:
