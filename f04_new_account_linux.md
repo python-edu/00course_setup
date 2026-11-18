@@ -106,6 +106,9 @@ On the **new account**:
    set colorcolumn 80
    set hlsearch true
    bind Alt-s SaveAs
+
+   set relativeruler true
+   bind Ctrl-j "command-edit:jump "
    ```
 
    - `tabsize 4` – four spaces per indentation level.
@@ -113,13 +116,15 @@ On the **new account**:
    - `tabmovement true` – move the cursor across indentation in groups of four spaces.
    - `autoindent true` – preserve indentation while typing.
    - `smartpaste false` – do not add extra indentation when pasting.
-   - `clipboard external` – use the Windows clipboard.
+   - `clipboard external` – use the system clipboard.
    - `syntax true` – highlight code syntax.
    - `matchbrace true` – highlight matching brackets.
    - `hltrailingws true` – highlight trailing whitespace at the end of lines.
    - `colorcolumn 80` – display a vertical guide at column 80.
    - `hlsearch true` – highlight all search matches.
    - `bind Alt-s SaveAs` – assign **Alt+S** to Save As (**Ctrl+S** remains Save).
+   - `set relativeruler true` – show line numbers relative to the current line (`false` disables this).
+   - `bind Ctrl-j "command-edit:jump "` – **Ctrl+J** opens a relative line jump; enter a number (for example, `5` down or `-5` up) and press **Enter**. The final space is required.
 
 3. Close the editor with **Ctrl+Q**; settings are saved.
 4. Set micro as the default editor **permanently** for this user:
@@ -172,11 +177,17 @@ On the **new account**:
    command -v hx
    ```
 
-   If there is no output (Bash):
+   If there is no output (Bash), add Helix to `PATH`:
 
    ```bash
    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
    source ~/.bashrc
+   ```
+
+   Check again:
+
+   ```bash
+   command -v hx
    ```
 
 ## Test
@@ -191,9 +202,26 @@ hx program.py
 
 Configuration file: `~/.config/helix/config.toml`.
 
-The course archive includes the configuration. It is copied in step 3. An existing `config.toml` may be overwritten.
+1. The course archive includes the configuration. It is copied during installation. An existing `config.toml` may be overwritten.
+2. Check the configuration file:
 
-To use Helix as the default editor, set `export EDITOR=hx` in `~/.bashrc` instead of `export EDITOR=micro`.
+   ```bash
+   ls -l ~/.config/helix/config.toml
+   ```
+
+3. Set Helix **permanently** as the default editor for this account:
+
+   ```bash
+   echo 'export EDITOR=hx' >> ~/.bashrc
+   ```
+
+4. Close the terminal, open it again and check:
+
+   ```bash
+   echo "$EDITOR"
+   ```
+
+   Expected output: `hx`.
 
 ---
 
@@ -233,6 +261,7 @@ git config --global init.defaultBranch main
 Alternative editors (choose one instead of `micro`):
 
 ```bash
+git config --global core.editor hx
 git config --global core.editor nvim
 git config --global core.editor vim
 git config --global core.editor nano

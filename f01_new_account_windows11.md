@@ -236,7 +236,10 @@ On the **new account**, in PowerShell 7:
 
 1. Download the Windows ZIP from [micro releases](https://github.com/micro-editor/micro/releases).
 2. Extract `micro.exe` to **`%LOCALAPPDATA%\Programs\micro`**.
-3. Add this directory to your **user `Path`** using the procedure in [PowerShell 7 setup](#powershell-7-setup), step 3 (substitute the micro directory).
+3. Add this directory to your **user `Path`**:
+   - Press **Win**, type **Edit environment variables for your account** and open it.
+   - Under **User variables**, choose **Path → Edit → New**.
+   - Enter `%LOCALAPPDATA%\Programs\micro` and confirm with **OK**. Do not change **System variables**.
 4. Open a new PowerShell window and run `micro -version`.
 
 ---
@@ -267,6 +270,9 @@ On the **new account**, in PowerShell 7:
    set colorcolumn 80
    set hlsearch true
    bind Alt-s SaveAs
+
+   set relativeruler true
+   bind Ctrl-j "command-edit:jump "
    ```
 
    - `tabsize 4` – four spaces per indentation level.
@@ -281,7 +287,8 @@ On the **new account**, in PowerShell 7:
    - `colorcolumn 80` – display a vertical guide at column 80.
    - `hlsearch true` – highlight all search matches.
    - `bind Alt-s SaveAs` – assign **Alt+S** to Save As (**Ctrl+S** remains Save).
-
+   - `set relativeruler true` – show line numbers relative to the current line (`false` disables this).
+   - `bind Ctrl-j "command-edit:jump "` – **Ctrl+J** opens a relative line jump; enter a number (for example, `5` down or `-5` up) and press **Enter**. The final space is required.
 
 4. Press **Ctrl+Q** to close micro. The settings are saved for this account.
 5. Configure **Windows Terminal** to let micro handle **Ctrl+V** itself:
@@ -318,9 +325,8 @@ On the **new account**, in PowerShell 7:
 [Helix](https://helix-editor.com/) is a modal text editor. Start it with `hx`.
 
 Choose **one** installation method:
-  - `official`
-  - for the course, use the `course build (master)`.
-
+- **Official release** (WinGet).
+- **Course build (master)** — recommended for the course.
 
 ## Official release (WinGet)
 
@@ -350,35 +356,62 @@ No administrator rights are needed.
 
 ## Test
 
+In a **new** PowerShell 7 window:
+
 ```powershell
 hx --version
 hx --health python
+```
+
+Open a file:
+
+```powershell
 hx program.py
 ```
+
+**If `hx` is not recognized after installing the course build:**
+
+1. Open **File Explorer** and locate the installed `hx.exe`. Copy the path of the folder containing it.
+2. Press **Win**, type **Edit environment variables for your account** and open it.
+3. Under **User variables**, select **Path → Edit → New**.
+4. Paste the folder path and confirm with **OK**. Do not change **System variables**.
+5. Open a new PowerShell 7 window and run `hx --version` again.
 
 ## Configuration
 
 Configuration file: `%APPDATA%\helix\config.toml`.
 
-- **Course build:** `INSTALL.cmd` installs the configuration.
-- **Official release:** download [config.toml](config.toml) and copy it to `%APPDATA%\helix\config.toml`.
+1. **Course build:** `INSTALL.cmd` copies the configuration. If `config.toml` already exists, the installer creates `config.toml.bak` unless that backup already exists.
+2. **Official release:** download [config.toml](config.toml) to your **Downloads** folder. In PowerShell 7, run:
 
-To use Helix as the default editor for this account:
+   ```powershell
+   New-Item -ItemType Directory -Force "$env:APPDATA\helix" | Out-Null
+   Copy-Item "$HOME\Downloads\config.toml" "$env:APPDATA\helix\config.toml"
+   ```
 
-```powershell
-[Environment]::SetEnvironmentVariable('EDITOR', 'hx', 'User')
-```
+3. Check that the configuration file exists:
 
-Open a new PowerShell 7 window and check:
+   ```powershell
+   Test-Path "$env:APPDATA\helix\config.toml"
+   ```
 
-```powershell
-$env:EDITOR
-```
+   Expected output: `True`.
 
-Expected output: `hx`.
+4. Set Helix **permanently** as the default editor for this account:
+
+   ```powershell
+   [Environment]::SetEnvironmentVariable('EDITOR', 'hx', 'User')
+   ```
+
+5. Close PowerShell 7, open a new window and check:
+
+   ```powershell
+   $env:EDITOR
+   ```
+
+   Expected output: `hx`.
 
 ---
-
 
 # Git installation
 
@@ -445,6 +478,7 @@ git config --global init.defaultBranch main
 Other editor choices (use **one** instead of `micro`):
 
 ```powershell
+git config --global core.editor hx
 git config --global core.editor nvim
 git config --global core.editor vim
 git config --global core.editor notepad

@@ -120,6 +120,9 @@ On the **new account**, in Terminal:
    set colorcolumn 80
    set hlsearch true
    bind Alt-s SaveAs
+
+   set relativeruler true
+   bind Ctrl-j "command-edit:jump "
    ```
 
    - `tabsize 4` – four spaces per indentation level.
@@ -127,13 +130,15 @@ On the **new account**, in Terminal:
    - `tabmovement true` – move the cursor across indentation in groups of four spaces.
    - `autoindent true` – preserve indentation while typing.
    - `smartpaste false` – do not add extra indentation when pasting.
-   - `clipboard external` – use the Windows clipboard.
+   - `clipboard external` – use the system clipboard.
    - `syntax true` – highlight code syntax.
    - `matchbrace true` – highlight matching brackets.
    - `hltrailingws true` – highlight trailing whitespace at the end of lines.
    - `colorcolumn 80` – display a vertical guide at column 80.
    - `hlsearch true` – highlight all search matches.
    - `bind Alt-s SaveAs` – assign **Alt+S** to Save As (**Ctrl+S** remains Save).
+   - `set relativeruler true` – show line numbers relative to the current line (`false` disables this).
+   - `bind Ctrl-j "command-edit:jump "` – **Ctrl+J** opens a relative line jump; enter a number (for example, `5` down or `-5` up) and press **Enter**. The final space is required.
 
 3. Press **Ctrl+Q** to exit; settings are saved.
 4. Set micro as the default editor **permanently** for this user:
@@ -168,34 +173,72 @@ On the **main account that manages Homebrew**:
 
    Stable release instead: `brew install helix`.
 
-2. Sign in to the **new account** and check:
+2. Sign in to the **new account** and open Terminal.
+3. Check:
 
    ```bash
+   command -v hx
    hx --version
    hx --health python
    ```
+
+If `hx` is not found, make Homebrew available on this account:
+
+**Apple Silicon:**
+
+```bash
+eval "$(/opt/homebrew/bin/brew shellenv)"
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+```
+
+**Intel:**
+
+```bash
+eval "$(/usr/local/bin/brew shellenv)"
+echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile
+```
+
+Open a new Terminal and repeat step 3.
 
 The `--HEAD` version is built from source and may differ from the course builds for Windows and Linux.
 
 ## Configuration
 
-On the **new account**:
+On the **new account**, in Terminal:
 
 1. Download [config.toml](config.toml) to `~/Downloads`.
-2. Copy it to the Helix configuration directory:
+2. Create the configuration directory and copy the file:
 
    ```bash
    mkdir -p ~/.config/helix
    cp ~/Downloads/config.toml ~/.config/helix/config.toml
    ```
 
-3. Start Helix:
+3. Check the configuration file:
+
+   ```bash
+   ls -l ~/.config/helix/config.toml
+   ```
+
+4. Start Helix:
 
    ```bash
    hx program.py
    ```
 
-To use Helix as the default editor, add `export EDITOR=hx` to `~/.zshrc` instead of `export EDITOR=micro`.
+5. Set Helix **permanently** as the default editor for this account:
+
+   ```bash
+   echo 'export EDITOR=hx' >> ~/.zshrc
+   ```
+
+6. Close Terminal, open it again and check:
+
+   ```bash
+   echo "$EDITOR"
+   ```
+
+   Expected output: `hx`.
 
 ---
 
@@ -236,6 +279,7 @@ git config --global init.defaultBranch main
 Alternative editors (choose one instead of `micro`):
 
 ```bash
+git config --global core.editor hx
 git config --global core.editor nvim
 git config --global core.editor vim
 git config --global core.editor nano
