@@ -9,11 +9,9 @@
 - [Account settings](#account-settings)
 - [WinGet](#winget)
 - [PowerShell 7 installation](#powershell-7-installation)
-- [PowerShell 7 setup](#powershell-7-setup)
 - [Micro installation](#micro-installation)
-- [Micro setup](#micro-setup)
+- [Helix](#helix)
 - [Git installation](#git-installation)
-- [Git setup](#git-setup)
 - [Troubleshooting](#troubleshooting)
 - [Cleanup](#cleanup)
 
@@ -188,7 +186,7 @@ On the **new account**, in Windows PowerShell:
 
 ---
 
-# PowerShell 7 setup
+## PowerShell 7 setup
 
 On the **new account**, in PowerShell 7:
 
@@ -243,7 +241,7 @@ On the **new account**, in PowerShell 7:
 
 ---
 
-# Micro setup
+## Micro setup
 
 On the **new account**, in PowerShell 7:
 
@@ -315,6 +313,73 @@ On the **new account**, in PowerShell 7:
 
 ---
 
+# Helix
+
+[Helix](https://helix-editor.com/) is a modal text editor. Start it with `hx`.
+
+Choose **one** installation method:
+  - `official`
+  - for the course, use the `course build (master)`.
+
+
+## Official release (WinGet)
+
+On the **new account**, in PowerShell 7:
+
+```powershell
+winget install --id Helix.Helix --exact --source winget
+```
+
+Open a new PowerShell 7 window. To update later:
+
+```powershell
+winget upgrade --id Helix.Helix --exact
+```
+
+## Course build (master)
+
+The stable release does not include some features used in the course. This build uses commit `872b24025` (Windows x64).
+
+1. Download [helix-872b24025-windows-x86_64.zip](helix-872b24025-windows-x86_64.zip).
+2. Extract the **complete** ZIP file.
+3. Open the extracted folder and double-click **`INSTALL.cmd`**.
+4. When `Installation complete` appears, close the installer.
+5. Open a **new** PowerShell 7 window.
+
+No administrator rights are needed.
+
+## Test
+
+```powershell
+hx --version
+hx --health python
+hx program.py
+```
+
+## Configuration
+
+Configuration file: `%APPDATA%\helix\config.toml`.
+
+- **Course build:** `INSTALL.cmd` installs the configuration.
+- **Official release:** download [config.toml](config.toml) and copy it to `%APPDATA%\helix\config.toml`.
+
+To use Helix as the default editor for this account:
+
+```powershell
+[Environment]::SetEnvironmentVariable('EDITOR', 'hx', 'User')
+```
+
+Open a new PowerShell 7 window and check:
+
+```powershell
+$env:EDITOR
+```
+
+Expected output: `hx`.
+
+---
+
+
 # Git installation
 
 On the **new account**, in PowerShell 7:
@@ -325,7 +390,8 @@ On the **new account**, in PowerShell 7:
    git --version
    ```
 
-   - If `git version ...` appears, Git is available to this account, even if it was installed earlier for all Windows users. Continue to [Git setup](#git-setup). The Git settings in the next section will belong to the **new account**.
+   - If `git version ...` appears, Git is available to this account, even if it was installed earlier for all Windows users.
+     Continue to [Git setup](#git-setup). The Git settings in the next section will belong to the **new account**.
    - If Windows reports that `git` is not recognized, continue to step 2.
 
 2. Install Git for the current user:

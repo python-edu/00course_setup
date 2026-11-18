@@ -7,11 +7,9 @@
 - [New account](#new-account)
 - [Account settings](#account-settings)
 - [Terminal](#terminal)
-- [Terminal setup](#terminal-setup)
 - [Micro installation](#micro-installation)
-- [Micro setup](#micro-setup)
+- [Helix](#helix)
 - [Git installation](#git-installation)
-- [Git setup](#git-setup)
 - [Troubleshooting](#troubleshooting)
 - [Cleanup](#cleanup)
 
@@ -83,7 +81,7 @@ micro -version
 
 ---
 
-# Micro setup
+## Micro setup
 
 On the **new account**:
 
@@ -122,7 +120,6 @@ On the **new account**:
    - `colorcolumn 80` – display a vertical guide at column 80.
    - `hlsearch true` – highlight all search matches.
    - `bind Alt-s SaveAs` – assign **Alt+S** to Save As (**Ctrl+S** remains Save).
-   ```text
 
 3. Close the editor with **Ctrl+Q**; settings are saved.
 4. Set micro as the default editor **permanently** for this user:
@@ -138,6 +135,65 @@ On the **new account**:
    ```
 
    Expected output: `micro`.
+
+---
+
+# Helix
+
+[Helix](https://helix-editor.com/) is a modal text editor. Start it with `hx`.
+
+## Course build (master)
+
+Build from commit `872b24025` (Linux x86-64).
+
+On the **new account**:
+
+1. Download [helix-872b24025-linux-x86_64.tar.gz](helix-872b24025-linux-x86_64.tar.gz) to `~/Downloads`.
+2. Extract the archive:
+
+   ```bash
+   cd ~/Downloads
+   tar -xzf helix-872b24025-linux-x86_64.tar.gz
+   cd helix-872b24025-DISTRIBUTION
+   ```
+
+3. Copy the program and configuration:
+
+   ```bash
+   mkdir -p ~/.local/bin ~/.config/helix
+   cp hx ~/.local/bin/hx
+   cp -a helix/. ~/.config/helix/
+   chmod +x ~/.local/bin/hx
+   ```
+
+4. Check the command:
+
+   ```bash
+   command -v hx
+   ```
+
+   If there is no output (Bash):
+
+   ```bash
+   echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+   source ~/.bashrc
+   ```
+
+## Test
+
+```bash
+hx --version
+hx --health python
+hx program.py
+```
+
+## Configuration
+
+Configuration file: `~/.config/helix/config.toml`.
+
+The course archive includes the configuration. It is copied in step 3. An existing `config.toml` may be overwritten.
+
+To use Helix as the default editor, set `export EDITOR=hx` in `~/.bashrc` instead of `export EDITOR=micro`.
 
 ---
 

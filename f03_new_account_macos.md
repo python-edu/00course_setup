@@ -7,11 +7,9 @@
 - [New account](#new-account)
 - [Account settings](#account-settings)
 - [Terminal](#terminal)
-- [Terminal setup](#terminal-setup)
 - [Micro installation](#micro-installation)
-- [Micro setup](#micro-setup)
+- [Helix](#helix)
 - [Git installation](#git-installation)
-- [Git setup](#git-setup)
 - [Troubleshooting](#troubleshooting)
 - [Cleanup](#cleanup)
 
@@ -97,7 +95,7 @@ On the **main account that manages Homebrew**:
 
 ---
 
-# Micro setup
+## Micro setup
 
 On the **new account**, in Terminal:
 
@@ -136,7 +134,6 @@ On the **new account**, in Terminal:
    - `colorcolumn 80` – display a vertical guide at column 80.
    - `hlsearch true` – highlight all search matches.
    - `bind Alt-s SaveAs` – assign **Alt+S** to Save As (**Ctrl+S** remains Save).
-   ```text
 
 3. Press **Ctrl+Q** to exit; settings are saved.
 4. Set micro as the default editor **permanently** for this user:
@@ -152,6 +149,53 @@ On the **new account**, in Terminal:
    ```
 
    Expected output: `micro`.
+
+---
+
+# Helix
+
+[Helix](https://helix-editor.com/) is a modal text editor. Start it with `hx`.
+
+## Installation
+
+On the **main account that manages Homebrew**:
+
+1. Install the version from the development branch (`master`):
+
+   ```bash
+   brew install --HEAD helix
+   ```
+
+   Stable release instead: `brew install helix`.
+
+2. Sign in to the **new account** and check:
+
+   ```bash
+   hx --version
+   hx --health python
+   ```
+
+The `--HEAD` version is built from source and may differ from the course builds for Windows and Linux.
+
+## Configuration
+
+On the **new account**:
+
+1. Download [config.toml](config.toml) to `~/Downloads`.
+2. Copy it to the Helix configuration directory:
+
+   ```bash
+   mkdir -p ~/.config/helix
+   cp ~/Downloads/config.toml ~/.config/helix/config.toml
+   ```
+
+3. Start Helix:
+
+   ```bash
+   hx program.py
+   ```
+
+To use Helix as the default editor, add `export EDITOR=hx` to `~/.zshrc` instead of `export EDITOR=micro`.
 
 ---
 
