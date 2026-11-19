@@ -89,7 +89,7 @@ On the **main administrator account**:
 ## Set English as the account display language
 
   - Open Start → Settings (Win + I).
-  - Select Time & language → Language & region.
+  - Select **Time & language → Language**.
   - Under Preferred languages, click Add a language.
   - Search for English (United States) and select Next.
   - Select Language pack and Set as my Windows display language. Other optional features are not required.
@@ -102,8 +102,7 @@ On the **main administrator account**:
 ## Show file name extensions
 
   - Open **File Explorer**.
-  - Select **View → Show → File name extensions**.
-  - Enable **File name extensions**.
+  - Select the **View** tab and check **File name extensions**.
 
 ---
 
@@ -257,7 +256,7 @@ On the **new account**, in PowerShell 7:
    set hlsearch true
    bind Alt-s SaveAs
 
-   set relativeruler true
+   set relativeruler false
    bind Ctrl-j "command-edit:jump "
    ```
 
@@ -273,7 +272,7 @@ On the **new account**, in PowerShell 7:
    - `colorcolumn 80` – display a vertical guide at column 80.
    - `hlsearch true` – highlight all search matches.
    - `bind Alt-s SaveAs` – assign **Alt+S** to Save As (**Ctrl+S** remains Save).
-   - `set relativeruler true` – show line numbers relative to the current line (`false` disables this).
+   - `set relativeruler false` – show **absolute** line numbers (the default). Use `set relativeruler true` to display distances from the current line instead; `false` restores absolute numbering.
    - `bind Ctrl-j "command-edit:jump "` – **Ctrl+J** opens a relative line jump; enter a number (for example, `5` down or `-5` up) and press **Enter**. The final space is required.
 
 4. Press **Ctrl+Q** to close micro. The settings are saved for this account.
@@ -346,7 +345,6 @@ In a **new** PowerShell 7 window:
 
 ```powershell
 hx --version
-hx --health python
 ```
 
 Open a file:
@@ -449,7 +447,7 @@ On the **new account**, in PowerShell 7:
 
 ---
 
-# Git setup
+## Git setup
 
 On the **new account**, replace the example name and email:
 
@@ -479,67 +477,20 @@ git config --global --list
 
 # Troubleshooting
 
-## 1. Check the account
+## Check the account
 
-1. Open PowerShell:
+In PowerShell 7, run:
 
-   ```powershell
-   whoami
-   $HOME
-   ```
+```powershell
+whoami
+$HOME
+```
 
-2. `whoami` displays the account you are using. `$HOME` displays that account's home directory.
-3. If these show your main account, sign out and log in to the new course account before continuing.
+If these refer to your main account, sign in to the course account before continuing.
 
-## 2. `pwsh` is not recognized
+## Installation or account creation is blocked
 
-1. Open **Start** and search for **PowerShell 7**.
-2. If you installed PowerShell from ZIP, open **File Explorer**, then enter `%LOCALAPPDATA%\Programs\PowerShell\7` in the address bar.
-3. Check whether `pwsh.exe` is present.
-4. If the file exists, follow [PowerShell 7 setup](#powershell-7-setup), step 3, to add this directory to your **user `Path`**.
-5. Close PowerShell, open a new window and check:
-
-   ```powershell
-   pwsh --version
-   ```
-
-## 3. PowerShell opens in `C:\Windows\System32`
-
-1. If you use Windows Terminal, open **Settings → Profiles → PowerShell 7**.
-2. Set **Starting directory** to `%USERPROFILE%`.
-3. Open a new terminal and check:
-
-   ```powershell
-   pwd
-   ```
-
-## 4. `micro` or `git` is not recognized
-
-1. Close PowerShell 7 and open a new window.
-2. Check the program:
-
-   ```powershell
-   micro -version
-   git --version
-   ```
-
-3. If micro was extracted from ZIP, check for `micro.exe` in `%LOCALAPPDATA%\Programs\micro`.
-4. If PortableGit was extracted, check for `git.exe` in `%LOCALAPPDATA%\Programs\Git\cmd`.
-5. Add the corresponding folder to your **user `Path`** using [PowerShell 7 setup](#powershell-7-setup), step 3.
-6. Open a new PowerShell 7 window and repeat step 2.
-
-## 5. Pasting in micro changes indentation
-
-1. Open micro and press **Ctrl+E**.
-2. Enter `set smartpaste false` and press **Enter**.
-3. **If you use Windows Terminal**, check **Settings → Actions**: **Ctrl+V** must not be assigned to the terminal's **Paste** action.
-4. In micro, use **Ctrl+V** to paste using micro's clipboard command.
-
-## 6. Account creation or app installation is blocked
-
-1. Return to the main administrator account to create the new local user.
-2. Open **Settings → Accounts → Family & other users** and check whether that user already exists.
-3. If Windows reports that an administrator or organization blocks the action, contact the computer administrator.
+If an administrator or organization blocks account creation or software installation, contact the computer administrator.
 
 ---
 

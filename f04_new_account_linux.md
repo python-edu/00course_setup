@@ -53,7 +53,7 @@ Open the terminal provided by your desktop environment (`bash`).
 
 ---
 
-# Terminal setup
+## Terminal setup
 
 On the **new account**:
 
@@ -107,7 +107,7 @@ On the **new account**:
    set hlsearch true
    bind Alt-s SaveAs
 
-   set relativeruler true
+   set relativeruler false
    bind Ctrl-j "command-edit:jump "
    ```
 
@@ -123,7 +123,7 @@ On the **new account**:
    - `colorcolumn 80` – display a vertical guide at column 80.
    - `hlsearch true` – highlight all search matches.
    - `bind Alt-s SaveAs` – assign **Alt+S** to Save As (**Ctrl+S** remains Save).
-   - `set relativeruler true` – show line numbers relative to the current line (`false` disables this).
+   - `set relativeruler false` – show **absolute** line numbers (the default). Use `set relativeruler true` to display distances from the current line instead; `false` restores absolute numbering.
    - `bind Ctrl-j "command-edit:jump "` – **Ctrl+J** opens a relative line jump; enter a number (for example, `5` down or `-5` up) and press **Enter**. The final space is required.
 
 3. Close the editor with **Ctrl+Q**; settings are saved.
@@ -194,7 +194,6 @@ On the **new account**:
 
 ```bash
 hx --version
-hx --health python
 hx program.py
 ```
 
@@ -247,7 +246,7 @@ git --version
 
 ---
 
-# Git setup
+## Git setup
 
 On the **new account**, enter your own name and email address:
 
@@ -277,21 +276,7 @@ git config --global --list
 
 # Troubleshooting
 
-**`micro` or `git` not found:**
-
-1. Open a new terminal on the course account.
-2. Check:
-
-   ```bash
-   command -v micro
-   command -v git
-   echo "$PATH"
-   ```
-
-3. If a command is missing, sign in to the administrator account and verify that its package is installed with APT.
-4. If APT cannot find `micro`, check your Debian/Ubuntu version and enabled repositories before downloading an alternative from [micro releases](https://github.com/zyedidia/micro/releases).
-
-**Cannot create the account:** ask the computer administrator for help.
+If APT cannot find `micro`, check the Debian/Ubuntu release and enabled repositories. If account creation is restricted, contact the computer administrator.
 
 ---
 

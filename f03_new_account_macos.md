@@ -47,7 +47,7 @@ Open the macOS **Terminal** application (`zsh`).
 
 ---
 
-# Terminal setup
+## Terminal setup
 
 On the **new account**, in Terminal:
 
@@ -121,7 +121,7 @@ On the **new account**, in Terminal:
    set hlsearch true
    bind Alt-s SaveAs
 
-   set relativeruler true
+   set relativeruler false
    bind Ctrl-j "command-edit:jump "
    ```
 
@@ -137,7 +137,7 @@ On the **new account**, in Terminal:
    - `colorcolumn 80` – display a vertical guide at column 80.
    - `hlsearch true` – highlight all search matches.
    - `bind Alt-s SaveAs` – assign **Alt+S** to Save As (**Ctrl+S** remains Save).
-   - `set relativeruler true` – show line numbers relative to the current line (`false` disables this).
+   - `set relativeruler false` – show **absolute** line numbers (the default). Use `set relativeruler true` to display distances from the current line instead; `false` restores absolute numbering.
    - `bind Ctrl-j "command-edit:jump "` – **Ctrl+J** opens a relative line jump; enter a number (for example, `5` down or `-5` up) and press **Enter**. The final space is required.
 
 3. Press **Ctrl+Q** to exit; settings are saved.
@@ -179,8 +179,7 @@ On the **main account that manages Homebrew**:
    ```bash
    command -v hx
    hx --version
-   hx --health python
-   ```
+      ```
 
 If `hx` is not found, make Homebrew available on this account:
 
@@ -206,7 +205,7 @@ The `--HEAD` version is built from source and may differ from the course builds 
 
 On the **new account**, in Terminal:
 
-1. Download [config.toml](config.toml) to `~/Downloads`.
+1. Open [config.toml](https://github.com/python-edu/00course_setup/blob/main/config.toml), choose **Download raw file**, and save it as `~/Downloads/config.toml`.
 2. Create the configuration directory and copy the file:
 
    ```bash
@@ -265,7 +264,7 @@ command -v git
 
 ---
 
-# Git setup
+## Git setup
 
 On the **new account**, replace the example identity:
 
@@ -295,22 +294,7 @@ git config --global --list
 
 # Troubleshooting
 
-**`brew`, `micro` or `git` not found:**
-
-1. Open a new Terminal window.
-2. Check where the commands are located:
-
-   ```bash
-   command -v brew
-   command -v micro
-   command -v git
-   printf '%s\n' "$PATH"
-   ```
-
-3. If Homebrew is installed but not visible, repeat the corresponding `brew shellenv` step in **Terminal setup**.
-4. If `brew install` fails on the standard account, perform it on the main account that manages Homebrew. Do not run `sudo brew`.
-
-If account creation is blocked, ask the computer administrator.
+If the account cannot create a local user or an organization blocks the installation, contact the computer administrator. Run Homebrew installations from the main account that manages Homebrew; do not use `sudo brew`.
 
 ---
 
