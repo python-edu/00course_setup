@@ -1,0 +1,65 @@
+theme = "onedark"
+
+[editor]
+
+# Open files: "never", "multiple", "always"
+bufferline = "multiple"
+
+# Line numbers: "absolute", "relative"
+line-number = "absolute"
+
+# Highlight current line
+cursorline = true
+
+# Color indicator for Normal, Insert and Select modes
+color-modes = true
+
+# Mouse support
+mouse = true
+
+# Format on save: true, false
+auto-format = false
+
+# Vertical line at column 80
+rulers = [80]
+
+# Popup borders: "none", "popup", "menu", "all"
+popup-border = "all"
+
+
+[editor.cursor-shape]
+
+# Shapes: "block", "bar", "underline", "hidden"
+normal = "block"
+insert = "bar"
+select = "underline"
+
+
+[editor.indent-guides]
+
+# Show indentation guides: true, false
+render = true
+
+# Characters: "│", "╎", "┆", "┊"
+character = "│"
+
+
+[editor.whitespace.render]
+
+# Values: "none", "all"
+tab = "all"
+space = "none"
+newline = "none"
+
+
+# Optional: show hidden files in file picker
+# [editor.file-picker]
+# hidden = false
+
+
+# Optional: word completion from open buffers
+# Available in this development build
+# Default trigger-length = 7
+[editor.word-completion]
+trigger-length = 3
+
